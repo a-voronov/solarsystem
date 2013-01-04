@@ -41,15 +41,13 @@ public:
 	SolarSystemController(void);
 	~SolarSystemController(void);
 
-	void reshape(GLsizei w, GLsizei h);
-	void noReshape(GLsizei w, GLsizei h);
 	void initObjectsTextures(void);
 	void display(void);
-	void timerObjectsMovement(int);
+	void timerObjectsMovement(void);
+	void initOnReshape(void);
 
 protected:
 	std::vector<SphereSpaceObject*> spaceObjects;
-
-	void initOnReshape(void);
+	GLUquadricObj *quadObj;
 };
 

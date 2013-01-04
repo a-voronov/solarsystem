@@ -7,16 +7,6 @@ const double SphereSpaceObject::sphereDrawnAngle = -90.0;
 // Getters & Setters initialization
 //==================================================================================
 
-BitmapBits SphereSpaceObject::getImage(void) 
-{
-	return this->image;
-}
-
-GLuint SphereSpaceObject::getTexture(void) 
-{
-	return this->texture;
-}
-
 double SphereSpaceObject::getDepthValue(void)
 {
 	return this->depthValue;
@@ -53,23 +43,23 @@ void SphereSpaceObject::setOrbitRotationAngle(double angle)
 
 void SphereSpaceObject::initTextures(void)
 {
-	this->getImage().load(this->getImageName());
-	GLuint imgTexture = this->getTexture();
-	// glGenTextures(1, &imgTexture);
+	this->image.load(this->getImageName());
+	GLuint imgTexture = this->texture;
+	glGenTextures(1, &imgTexture);
 }
 
 void SphereSpaceObject::draw(GLUquadricObj *quadObj)
 {
-	glMatrixMode (GL_MODELVIEW);
+	// glMatrixMode (GL_MODELVIEW);
 
 	glPushMatrix();
 	{
-		glBindTexture(GL_TEXTURE_2D, this->getTexture());
+		glBindTexture(GL_TEXTURE_2D, this->texture);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexImage2D(
 			GL_TEXTURE_2D, 0, 3, 
-			this->getImage().getWidth(), this->getImage().getHeight(), 0, 
-			GL_BGR_EXT, GL_UNSIGNED_BYTE, this->getImage().getBits()
+			this->image.getWidth(), this->image.getHeight(), 0, 
+			GL_BGR_EXT, GL_UNSIGNED_BYTE, this->image.getBits()
 		);
 
 		this->orbitalRotation();
@@ -86,8 +76,8 @@ void SphereSpaceObject::orbitalRotation(void)
 {
 	if (this->getOrbitPeriod() != 0.0) 
 	{
-		coord distance = this->getDistanceToOrbitCenter();
 		rotationCoord orbit = this->getOrbitRotationCoord();
+		coord distance = this->getDistanceToOrbitCenter();
 
 		glRotated(orbit.angle, orbit.x, orbit.y, orbit.z);
 		glTranslated(distance.x, distance.y, distance.z);

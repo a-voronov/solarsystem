@@ -2,7 +2,12 @@
 #include "Sun.h"
 
 
-Sun::Sun(void) { /* constructor body */ }
+Sun::Sun(void) 
+{ 
+	this->setOrbitRotationAngle(0.0);
+	this->setSpinRotationAngle(0.0);
+}
+
 Sun::~Sun(void) { /* destructor body */ }
 
 LPCWSTR	Sun::getImageName()
@@ -12,7 +17,7 @@ LPCWSTR	Sun::getImageName()
 
 double Sun::getRadius() 
 {
-	return 4.6491;
+	return 1.0;
 }
 
 double Sun::getSpinPeriod()

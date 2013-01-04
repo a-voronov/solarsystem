@@ -2,7 +2,12 @@
 #include "Earth.h"
 
 
-Earth::Earth(void) { /* constructor body */ }
+Earth::Earth(void) 
+{ 
+	this->setOrbitRotationAngle(0.0);
+	this->setSpinRotationAngle(0.0);
+}
+
 Earth::~Earth(void) { /* destructor body */ }
 
 LPCWSTR Earth::getImageName()
@@ -12,7 +17,7 @@ LPCWSTR Earth::getImageName()
 
 double Earth::getRadius()
 {
-	return 1.0;
+	return 0.3;
 }
 
 double Earth::getSpinPeriod()
@@ -27,7 +32,7 @@ double Earth::getOrbitPeriod()
 
 coord Earth::getDistanceToOrbitCenter()
 {
-	return coord(1000.0, 0.0, 0.0);
+	return coord(2.0, 0.0, 0.0);
 }
 
 rotationCoord Earth::getSpinRotationCoord()

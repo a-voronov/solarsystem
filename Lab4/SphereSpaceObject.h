@@ -37,9 +37,6 @@ protected:
 public:
 	virtual ~SphereSpaceObject(void) = 0;
 
-	BitmapBits getImage(void);
-	GLuint getTexture(void);
-
 	double getDepthValue(void);
 	void setDepthValue(double depth);
 
