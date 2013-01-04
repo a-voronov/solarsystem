@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\SolarSystem">
+      <UniqueIdentifier>{c48a4c16-79be-40b2-8061-55f8f88ceb0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SolarSystem\SpaceSpheres">
+      <UniqueIdentifier>{a4f7ee16-76dc-4d35-9421-0a4559452741}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SolarSystem\SpaceSpheres\Abstract">
+      <UniqueIdentifier>{d005d438-35fd-4f73-b93b-7814c4c35eeb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SolarSystem">
+      <UniqueIdentifier>{4c178074-6971-4188-9df8-db8c281c0a57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SolarSystem\SpaceSpheres">
+      <UniqueIdentifier>{198ef808-3a04-4973-9491-236e9cbfd036}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SolarSystem\SpaceSpheres\Abstract">
+      <UniqueIdentifier>{498a7840-aa37-42a4-8863-fb3ee417bceb}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+    <None Include="earth.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="moon.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sun.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bitmap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="glut.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="coords.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Star.h">
+      <Filter>Header Files\SolarSystem\SpaceSpheres\Abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="Planet.h">
+      <Filter>Header Files\SolarSystem\SpaceSpheres\Abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="SphereSpaceObject.h">
+      <Filter>Header Files\SolarSystem\SpaceSpheres\Abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="Sun.h">
+      <Filter>Header Files\SolarSystem\SpaceSpheres</Filter>
+    </ClInclude>
+    <ClInclude Include="Satellite.h">
+      <Filter>Header Files\SolarSystem\SpaceSpheres\Abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="Earth.h">
+      <Filter>Header Files\SolarSystem\SpaceSpheres</Filter>
+    </ClInclude>
+    <ClInclude Include="SolarSystemController.h">
+      <Filter>Header Files\SolarSystem</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Lab4.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Star.cpp">
+      <Filter>Source Files\SolarSystem\SpaceSpheres\Abstract</Filter>
+    </ClCompile>
+    <ClCompile Include="Planet.cpp">
+      <Filter>Source Files\SolarSystem\SpaceSpheres\Abstract</Filter>
+    </ClCompile>
+    <ClCompile Include="SphereSpaceObject.cpp">
+      <Filter>Source Files\SolarSystem\SpaceSpheres\Abstract</Filter>
+    </ClCompile>
+    <ClCompile Include="Sun.cpp">
+      <Filter>Source Files\SolarSystem\SpaceSpheres</Filter>
+    </ClCompile>
+    <ClCompile Include="Satellite.cpp">
+      <Filter>Source Files\SolarSystem\SpaceSpheres\Abstract</Filter>
+    </ClCompile>
+    <ClCompile Include="Earth.cpp">
+      <Filter>Source Files\SolarSystem\SpaceSpheres</Filter>
+    </ClCompile>
+    <ClCompile Include="SolarSystemController.cpp">
+      <Filter>Source Files\SolarSystem</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
