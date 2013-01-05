@@ -34,13 +34,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
-    <None Include="earth.bmp">
+    <None Include="Bitmaps\earth.bmp">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="moon.bmp">
+    <None Include="Bitmaps\moon.bmp">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="sun.bmp">
+    <None Include="Bitmaps\sun.bmp">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

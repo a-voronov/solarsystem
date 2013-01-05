@@ -2,17 +2,13 @@
 #include "SolarSystemController.h"
 #include <GL/gl.h>
 
-#define windowOrigin screenWidth / 2 - windowWidth / 2, 100
-
-const int screenWidth = 1366;
-const int screenHeight = 768;
-const int windowWidth = 800;
-const int windowHeight = 200;
+const int windowWidth = 900;
+const int windowHeight = 500;
 
 SolarSystemController *solarSystem;
 
 void reshape(GLsizei w, GLsizei h);
-void noReshape(GLsizei w, GLsizei h);
+void initOnReshape(double width, double height);
 void display(void);
 void timer(int);
 
@@ -23,14 +19,17 @@ int main(int argc, char **argv)
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGB | GLUT_DEPTH | GLUT_DOUBLE);
 
-	glutInitWindowPosition(windowOrigin);
+	int windowOriginX = glutGet(GLUT_SCREEN_WIDTH) / 2 - windowWidth / 2;
+	int windowOriginY = glutGet(GLUT_SCREEN_HEIGHT) / 2 - windowHeight / 2;
+
+	glutInitWindowPosition(windowOriginX, windowOriginY);
 	glutInitWindowSize(windowWidth, windowHeight);
 	glutCreateWindow("Solar system");
 
 	solarSystem = new SolarSystemController();
 	solarSystem->initObjectsTextures();
 
-	glutReshapeFunc(noReshape);
+	glutReshapeFunc(reshape);
 	glutDisplayFunc(display);
 	glutTimerFunc(10, timer, 0);
 	glutMainLoop();
@@ -43,13 +42,18 @@ int main(int argc, char **argv)
 void reshape(GLsizei w, GLsizei h)
 {
 	glViewport(0, 0, w, h);
-	solarSystem->initOnReshape();
+	initOnReshape(w, h);
 }
 
-void noReshape(GLsizei w, GLsizei h)
+void initOnReshape(double width, double height)
 {
-	glViewport ((w - screenHeight) / 2, (h - screenHeight) / 2, screenHeight, screenHeight);
-	solarSystem->initOnReshape();
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+
+	double aspectRatio = width / height;
+
+	glFrustum(-1.0 * aspectRatio, 1.0 * aspectRatio, -1.0, 1.0, 1.0, 20.0);
+	glMatrixMode(GL_MODELVIEW);
 }
 
 void display(void)

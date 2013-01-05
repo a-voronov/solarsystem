@@ -12,7 +12,7 @@ Sun::~Sun(void) { /* destructor body */ }
 
 LPCWSTR	Sun::getImageName()
 {
-	return TEXT("sun.bmp");
+	return TEXT("Bitmaps/sun.bmp");
 }
 
 double Sun::getRadius() 
@@ -43,14 +43,4 @@ rotationCoord Sun::getSpinRotationCoord()
 rotationCoord Sun::getOrbitRotationCoord()
 {
 	return rotationCoord(0.0, 0.0, 0.0, 0.0);
-}
-
-double Sun::getSphereSlices() 
-{
-	return 40.0;
-}
-
-double Sun::getSphereStacks()
-{
-	return 32.0;
 }

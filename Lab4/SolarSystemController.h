@@ -44,7 +44,6 @@ public:
 	void initObjectsTextures(void);
 	void display(void);
 	void timerObjectsMovement(void);
-	void initOnReshape(void);
 
 protected:
 	std::vector<SphereSpaceObject*> spaceObjects;

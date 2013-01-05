@@ -45,9 +45,8 @@ void SolarSystemController::display(void)
 	glEnable(GL_TEXTURE_2D);
 
 	glLoadIdentity();
-	// TODO: gona be about ~10000.0 range
 	gluLookAt(
-		0.0, 3.0, 1.0, 
+		0.0, 4.0, 6.0, 
 		0.0, 0.0, 0.0, 
 		0.0, 1.0, 0.0
 	);
@@ -57,7 +56,6 @@ void SolarSystemController::display(void)
 		this->spaceObjects[index]->draw(this->quadObj);
 	}
 
-	//glFlush();
 	glutSwapBuffers();
 }
 
@@ -71,13 +69,4 @@ void SolarSystemController::timerObjectsMovement(void)
 		this->spaceObjects[index]->setOrbitRotationAngle(year);
 		this->spaceObjects[index]->setSpinRotationAngle(day);
 	}
-}
-
-void SolarSystemController::initOnReshape(void)
-{
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	// TODO: gona be about ~10000.0 range
-	glFrustum(-1.0, 1.0, -1.0, 1.0, 1.0, 20.0);
-	glMatrixMode(GL_MODELVIEW);
 }

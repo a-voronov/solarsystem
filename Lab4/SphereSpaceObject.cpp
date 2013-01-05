@@ -115,10 +115,10 @@ rotationCoord SphereSpaceObject::getInitRotationCoord()
 
 double SphereSpaceObject::getSphereSlices(void)
 {
-	return 20.0;
+	return 40.0;
 }
 
 double SphereSpaceObject::getSphereStacks(void)
 {
-	return 16.0;
+	return 32.0;
 }

@@ -12,8 +12,6 @@ protected:
 	rotationCoord	getSpinRotationCoord();
 	coord			getDistanceToOrbitCenter();
 	rotationCoord	getOrbitRotationCoord();
-	double			getSphereSlices();
-	double			getSphereStacks();
 
 public:
 	Sun(void);
