@@ -12,7 +12,7 @@ Sun::~Sun(void) { /* destructor body */ }
 
 LPCWSTR	Sun::getImageName()
 {
-	return TEXT("Bitmaps/sun.bmp");
+	return TEXT("Bitmaps/sunmap.bmp");
 }
 
 double Sun::getRadius() 

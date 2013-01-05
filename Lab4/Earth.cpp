@@ -12,7 +12,7 @@ Earth::~Earth(void) { /* destructor body */ }
 
 LPCWSTR Earth::getImageName()
 {
-	return TEXT("Bitmaps/earth.bmp");
+	return TEXT("Bitmaps/earthmap.bmp");
 }
 
 double Earth::getRadius()

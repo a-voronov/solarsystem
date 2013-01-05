@@ -34,13 +34,43 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
-    <None Include="Bitmaps\earth.bmp">
+    <None Include="Bitmaps\earthmap.bmp">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="Bitmaps\moon.bmp">
+    <None Include="Bitmaps\jupitermap.bmp">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="Bitmaps\sun.bmp">
+    <None Include="Bitmaps\marsmap.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Bitmaps\mercurymap.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Bitmaps\moonmap.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Bitmaps\neptunemap.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Bitmaps\Particle.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Bitmaps\plutomap.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Bitmaps\saturnmap.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Bitmaps\saturnringmap.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Bitmaps\sunmap.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Bitmaps\uranusmap.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Bitmaps\venusmap.bmp">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

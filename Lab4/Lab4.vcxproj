@@ -72,9 +72,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="Bitmaps\earth.bmp" />
-    <None Include="Bitmaps\moon.bmp" />
-    <None Include="Bitmaps\sun.bmp" />
+    <None Include="Bitmaps\earthmap.bmp" />
+    <None Include="Bitmaps\jupitermap.bmp" />
+    <None Include="Bitmaps\marsmap.bmp" />
+    <None Include="Bitmaps\mercurymap.bmp" />
+    <None Include="Bitmaps\moonmap.bmp" />
+    <None Include="Bitmaps\neptunemap.bmp" />
+    <None Include="Bitmaps\Particle.bmp" />
+    <None Include="Bitmaps\plutomap.bmp" />
+    <None Include="Bitmaps\saturnmap.bmp" />
+    <None Include="Bitmaps\saturnringmap.bmp" />
+    <None Include="Bitmaps\sunmap.bmp" />
+    <None Include="Bitmaps\uranusmap.bmp" />
+    <None Include="Bitmaps\venusmap.bmp" />
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
