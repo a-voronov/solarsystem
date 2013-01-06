@@ -37,10 +37,12 @@ Singleton* Singleton::getInstance()
 class SolarSystemController
 {
 protected:
+
 	double currentEarthRotation;
 	double earthDaysTranspired;
 	double earthDayIncrement;
 	double earthDaysTranspirationLimit;
+	std::vector<SphereSpaceObject*> spaceObjects;
 
 public:
 	SolarSystemController(void);
@@ -50,7 +52,7 @@ public:
 	void display(Camera *camera);
 	void timerObjectsMovement(void);
 
-protected:
-	std::vector<SphereSpaceObject*> spaceObjects;
+	double getRotationSpeed(void);
+	void setRotationSpeed(double speed);
 };
 

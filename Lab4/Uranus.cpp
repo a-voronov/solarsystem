@@ -15,7 +15,7 @@ double Uranus::getRadius()
 
 coord Uranus::getPathToOrbitCenter()
 {
-	return coord(8.5, 0.0, 0.0);
+	return coord(8.9, 0.0, 0.0);
 }
 
 double Uranus::getOrbitPeriod()

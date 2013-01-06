@@ -15,7 +15,7 @@ double Pluto::getRadius()
 
 coord Pluto::getPathToOrbitCenter()
 {
-	return coord(11.5, 0.0, 0.0);
+	return coord(11.8, 0.0, 0.0);
 }
 
 double Pluto::getOrbitPeriod()

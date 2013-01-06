@@ -15,7 +15,7 @@ double Jupiter::getRadius()
 
 coord Jupiter::getPathToOrbitCenter()
 {
-	return coord(5.0, 0.0, 0.0);
+	return coord(5.5, 0.0, 0.0);
 }
 
 double Jupiter::getOrbitPeriod()

@@ -4,9 +4,9 @@
 #include <GL/gl.h>
 #include "camera.h"
 
-const float movementSpeed = 0.003f;
-const float acceleration = 5.0;
-const int timerFrequency = 20;
+const float movementSpeed = 0.005f;
+const float acceleration = 10.0;
+const int timerFrequency = 10;
 
 const int windowWidth = 900;
 const int windowHeight = 500;
@@ -30,7 +30,7 @@ int main(int argc, char **argv)
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGB | GLUT_DEPTH | GLUT_DOUBLE);
 
-	glutGameModeString("1024x768:64@75");
+	glutGameModeString("1366x768:64@80");
 	glutEnterGameMode();
 	glutSetCursor(GLUT_CURSOR_NONE);
 
@@ -119,6 +119,16 @@ void keyboardPress(unsigned char pressedKey, int mouseXPosition, int mouseYPosit
 		case 'D'://VK_RIGHT:
 		{
 			camera->rotateAroundPoint(camera->m_vView, -movementSpeed * acceleration, 0, 1, 0);
+			break;
+		}
+		case '+':
+		{
+			solarSystem->setRotationSpeed(solarSystem->getRotationSpeed() * 2.0);
+			break;
+		}
+		case '-':
+		{
+			solarSystem->setRotationSpeed(solarSystem->getRotationSpeed() * 0.5);
 			break;
 		}
 		case 27:

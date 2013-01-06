@@ -15,7 +15,7 @@ double Mars::getRadius()
 
 coord Mars::getPathToOrbitCenter()
 {
-	return coord(3.5, 0.0, 0.0);
+	return coord(4.0, 0.0, 0.0);
 }
 
 double Mars::getOrbitPeriod()
