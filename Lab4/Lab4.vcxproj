@@ -89,6 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bitmap.h" />
+    <ClInclude Include="camera.h" />
     <ClInclude Include="coords.h" />
     <ClInclude Include="Earth.h" />
     <ClInclude Include="glut.h" />
@@ -110,6 +111,7 @@
     <ClInclude Include="Venus.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="camera.cpp" />
     <ClCompile Include="Earth.cpp" />
     <ClCompile Include="Jupiter.cpp" />
     <ClCompile Include="Lab4.cpp" />

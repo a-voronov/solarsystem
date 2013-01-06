@@ -11,7 +11,9 @@
 #include "Saturn.h"
 #include "Uranus.h"
 #include "Neptune.h"
+#include "Pluto.h"
 
+//const float scale = 10.0;
 
 SolarSystemController::SolarSystemController(void) 
 {
@@ -32,6 +34,7 @@ SolarSystemController::SolarSystemController(void)
 	this->spaceObjects.push_back(new Saturn(99499));
 	this->spaceObjects.push_back(new Uranus(99399));
 	this->spaceObjects.push_back(new Neptune(99299));
+	this->spaceObjects.push_back(new Pluto(99199));
 }
 
 SolarSystemController::~SolarSystemController(void) 
@@ -50,7 +53,7 @@ void SolarSystemController::initObjectsTextures(void)
 	}
 }
 
-void SolarSystemController::display(void)
+void SolarSystemController::display(Camera *camera)
 {
 	glShadeModel(GL_SMOOTH);
 
@@ -63,9 +66,9 @@ void SolarSystemController::display(void)
 
 	glLoadIdentity();
 	gluLookAt(
-		0.0, 4.0, 4.0, 
-		0.0, 0.0, 0.0, 
-		0.0, 1.0, 0.0
+		camera->m_vPosition.x,	camera->m_vPosition.y,	camera->m_vPosition.z, 
+		camera->m_vView.x,		camera->m_vView.y,		camera->m_vView.z, 
+		camera->m_vUpVector.x,	camera->m_vUpVector.y,	camera->m_vUpVector.z
 	);
 	
 	for (unsigned int index = 0; index < this->spaceObjects.size(); index++)
@@ -73,25 +76,30 @@ void SolarSystemController::display(void)
 		this->spaceObjects[index]->draw();
 	}
 
+	//glEnable(GL_BLEND);
+	//glDepthMask(GL_TRUE);
+	//glBlendFunc(GL_SRC_COLOR, GL_ONE);
+
 	glutSwapBuffers();
+	glFlush();
 }
 
 void SolarSystemController::timerObjectsMovement(void)
 {
+	this->currentEarthRotation += this->earthDayIncrement;
+	this->earthDaysTranspired += this->earthDayIncrement;
+
+	if (this->earthDaysTranspired == this->earthDaysTranspirationLimit)
+	{
+		this->earthDaysTranspired = 0;
+	}
+
 	for (unsigned int index = 0; index < this->spaceObjects.size(); index++)
 	{
-		this->currentEarthRotation += this->earthDayIncrement;
-		this->earthDaysTranspired += this->earthDayIncrement;
-
-		if (this->earthDaysTranspired == this->earthDaysTranspirationLimit)
-		{
-			this->earthDaysTranspired = 0;
-		}
-
 		double orbitPeriod = this->spaceObjects[index]->getOrbitPeriod();
 		double spinPeriod = this->spaceObjects[index]->getSpinPeriod();
 
-		this->spaceObjects[index]->setOrbitRotationAngle(360.0 * (this->earthDaysTranspired / orbitPeriod));
 		this->spaceObjects[index]->setSpinRotationAngle(360.0 * (this->currentEarthRotation / spinPeriod));
+		this->spaceObjects[index]->setOrbitRotationAngle(360.0 * (this->earthDaysTranspired / orbitPeriod));	
 	}
 }

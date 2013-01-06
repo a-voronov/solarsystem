@@ -15,17 +15,17 @@ double Pluto::getRadius()
 
 coord Pluto::getPathToOrbitCenter()
 {
-	return coord(10.0, 0.0, 0.0);
+	return coord(11.5, 0.0, 0.0);
 }
 
 double Pluto::getOrbitPeriod()
 {
-	return 90800.0;
+	return 90556.5;
 }
 
 double Pluto::getSpinPeriod()
 {
-	return -6.0;
+	return -6.387;
 }
 
 LPCWSTR Pluto::getImageName()

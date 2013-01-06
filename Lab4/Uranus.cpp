@@ -20,12 +20,12 @@ coord Uranus::getPathToOrbitCenter()
 
 double Uranus::getOrbitPeriod()
 {
-	return 30685.0;
+	return 30776.8;
 }
 
 double Uranus::getSpinPeriod()
 {
-	return -0.7;
+	return -0.718;
 }
 
 LPCWSTR Uranus::getImageName()

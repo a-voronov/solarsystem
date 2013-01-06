@@ -20,12 +20,12 @@ coord Jupiter::getPathToOrbitCenter()
 
 double Jupiter::getOrbitPeriod()
 {
-	return 4333.0;
+	return 4328.9;
 }
 
 double Jupiter::getSpinPeriod()
 {
-	return 0.4;
+	return 0.410;
 }
 
 LPCWSTR Jupiter::getImageName()

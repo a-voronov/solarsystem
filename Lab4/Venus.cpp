@@ -20,12 +20,12 @@ coord Venus::getPathToOrbitCenter()
 
 double Venus::getOrbitPeriod()
 {
-	return 225.0;
+	return 225;
 }
 
 double Venus::getSpinPeriod()
 {
-	return -243.0;
+	return -243.018;
 }
 
 LPCWSTR Venus::getImageName()

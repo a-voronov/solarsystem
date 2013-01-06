@@ -20,12 +20,12 @@ coord Saturn::getPathToOrbitCenter()
 
 double Saturn::getOrbitPeriod()
 {
-	return 10759.0;
+	return 10752.9;
 }
 
 double Saturn::getSpinPeriod()
 {
-	return 0.4;
+	return 0.426;
 }
 
 LPCWSTR Saturn::getImageName()

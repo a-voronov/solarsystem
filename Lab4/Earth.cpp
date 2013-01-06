@@ -20,12 +20,12 @@ coord Earth::getPathToOrbitCenter()
 
 double Earth::getOrbitPeriod()
 {
-	return 365.0;
+	return 365;
 }
 
 double Earth::getSpinPeriod()
 {
-	return 1.0;
+	return 0.997;
 }
 
 LPCWSTR Earth::getImageName()

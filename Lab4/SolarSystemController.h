@@ -31,6 +31,7 @@ Singleton* Singleton::getInstance()
 
 #include "SphereSpaceObject.h"
 #include <vector>
+#include "camera.h"
 
 
 class SolarSystemController
@@ -46,7 +47,7 @@ public:
 	~SolarSystemController(void);
 
 	void initObjectsTextures(void);
-	void display(void);
+	void display(Camera *camera);
 	void timerObjectsMovement(void);
 
 protected:

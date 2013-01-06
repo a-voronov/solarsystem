@@ -15,17 +15,17 @@ double Neptune::getRadius()
 
 coord Neptune::getPathToOrbitCenter()
 {
-	return coord(9.0, 0.0, 0.0);
+	return coord(10.0, 0.0, 0.0);
 }
 
 double Neptune::getOrbitPeriod()
 {
-	return 60190.0;
+	return 60152.0;
 }
 
 double Neptune::getSpinPeriod()
 {
-	return 0.7;
+	return 0.671;
 }
 
 LPCWSTR Neptune::getImageName()

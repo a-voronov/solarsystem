@@ -20,12 +20,12 @@ coord Mercury::getPathToOrbitCenter()
 
 double Mercury::getOrbitPeriod()
 {
-	return 88;
+	return 87.9691;
 }
 
 double Mercury::getSpinPeriod()
 {
-	return 59;
+	return 58.646;
 }
 
 LPCWSTR Mercury::getImageName()

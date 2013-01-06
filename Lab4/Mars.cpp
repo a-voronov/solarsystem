@@ -20,12 +20,12 @@ coord Mars::getPathToOrbitCenter()
 
 double Mars::getOrbitPeriod()
 {
-	return 686.0;
+	return 686.565;
 }
 
 double Mars::getSpinPeriod()
 {
-	return 1.0;
+	return 1.026;
 }
 
 LPCWSTR Mars::getImageName()

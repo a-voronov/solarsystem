@@ -135,6 +135,9 @@
     <ClInclude Include="Pluto.h">
       <Filter>Header Files\SolarSystem\SpaceSpheres</Filter>
     </ClInclude>
+    <ClInclude Include="camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -187,6 +190,9 @@
     </ClCompile>
     <ClCompile Include="Pluto.cpp">
       <Filter>Source Files\SolarSystem\SpaceSpheres</Filter>
+    </ClCompile>
+    <ClCompile Include="camera.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
