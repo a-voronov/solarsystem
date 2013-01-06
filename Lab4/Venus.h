@@ -2,7 +2,7 @@
 
 #include "Planet.h"
 
-class Earth : public Planet
+class Venus : public Planet
 {
 protected:
 	LPCWSTR			getImageName();
@@ -12,9 +12,9 @@ protected:
 	double			getAxialTiltAngle();
 
 public:
-	Earth(void);
-	Earth(double depthValue);
-	~Earth(void);
+	Venus(void);
+	Venus(double depthValue);
+	~Venus(void);
 
 	double getRadius();
 	double getSpinPeriod();

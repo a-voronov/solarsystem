@@ -2,27 +2,20 @@
 #include "Earth.h"
 
 
-Earth::Earth(void) 
-{ 
-	this->setOrbitRotationAngle(0.0);
-	this->setSpinRotationAngle(0.0);
-}
+Earth::Earth(void) : Planet() { }
 
-Earth::~Earth(void) { /* destructor body */ }
+Earth::Earth(double depthValue) : Planet(depthValue) { }
 
-LPCWSTR Earth::getImageName()
-{
-	return TEXT("Bitmaps/earthmap.bmp");
-}
+Earth::~Earth(void) { }
 
 double Earth::getRadius()
 {
-	return 0.3;
+	return 0.18;
 }
 
-double Earth::getSpinPeriod()
+coord Earth::getPathToOrbitCenter()
 {
-	return 1.0;
+	return coord(3.0, 0.0, 0.0);
 }
 
 double Earth::getOrbitPeriod()
@@ -30,9 +23,14 @@ double Earth::getOrbitPeriod()
 	return 365.0;
 }
 
-coord Earth::getDistanceToOrbitCenter()
+double Earth::getSpinPeriod()
 {
-	return coord(2.0, 0.0, 0.0);
+	return 1.0;
+}
+
+LPCWSTR Earth::getImageName()
+{
+	return TEXT("Bitmaps/earthmap.bmp");
 }
 
 rotationCoord Earth::getSpinRotationCoord()
@@ -45,7 +43,7 @@ rotationCoord Earth::getOrbitRotationCoord()
 	return rotationCoord(this->getOrbitRotationAngle(), 0.0, 1.0, 0.0);
 }
 
-rotationCoord Earth::getInitRotationCoord()
+double Earth::getAxialTiltAngle()
 {
-	return rotationCoord(23 + this->sphereDrawnAngle, 1.0, 0.0, 0.0);
+	return 23.0;
 }

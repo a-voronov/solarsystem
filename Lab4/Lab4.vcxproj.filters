@@ -111,6 +111,30 @@
     <ClInclude Include="SolarSystemController.h">
       <Filter>Header Files\SolarSystem</Filter>
     </ClInclude>
+    <ClInclude Include="Mercury.h">
+      <Filter>Header Files\SolarSystem\SpaceSpheres</Filter>
+    </ClInclude>
+    <ClInclude Include="Venus.h">
+      <Filter>Header Files\SolarSystem\SpaceSpheres</Filter>
+    </ClInclude>
+    <ClInclude Include="Mars.h">
+      <Filter>Header Files\SolarSystem\SpaceSpheres</Filter>
+    </ClInclude>
+    <ClInclude Include="Jupiter.h">
+      <Filter>Header Files\SolarSystem\SpaceSpheres</Filter>
+    </ClInclude>
+    <ClInclude Include="Saturn.h">
+      <Filter>Header Files\SolarSystem\SpaceSpheres</Filter>
+    </ClInclude>
+    <ClInclude Include="Uranus.h">
+      <Filter>Header Files\SolarSystem\SpaceSpheres</Filter>
+    </ClInclude>
+    <ClInclude Include="Neptune.h">
+      <Filter>Header Files\SolarSystem\SpaceSpheres</Filter>
+    </ClInclude>
+    <ClInclude Include="Pluto.h">
+      <Filter>Header Files\SolarSystem\SpaceSpheres</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -139,6 +163,30 @@
     </ClCompile>
     <ClCompile Include="SolarSystemController.cpp">
       <Filter>Source Files\SolarSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Mercury.cpp">
+      <Filter>Source Files\SolarSystem\SpaceSpheres</Filter>
+    </ClCompile>
+    <ClCompile Include="Venus.cpp">
+      <Filter>Source Files\SolarSystem\SpaceSpheres</Filter>
+    </ClCompile>
+    <ClCompile Include="Mars.cpp">
+      <Filter>Source Files\SolarSystem\SpaceSpheres</Filter>
+    </ClCompile>
+    <ClCompile Include="Jupiter.cpp">
+      <Filter>Source Files\SolarSystem\SpaceSpheres</Filter>
+    </ClCompile>
+    <ClCompile Include="Saturn.cpp">
+      <Filter>Source Files\SolarSystem\SpaceSpheres</Filter>
+    </ClCompile>
+    <ClCompile Include="Uranus.cpp">
+      <Filter>Source Files\SolarSystem\SpaceSpheres</Filter>
+    </ClCompile>
+    <ClCompile Include="Neptune.cpp">
+      <Filter>Source Files\SolarSystem\SpaceSpheres</Filter>
+    </ClCompile>
+    <ClCompile Include="Pluto.cpp">
+      <Filter>Source Files\SolarSystem\SpaceSpheres</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -5,6 +5,8 @@
 class Planet : public SphereSpaceObject
 {
 public:
+	Planet(void) : SphereSpaceObject() { }
+	Planet(double depthValue) : SphereSpaceObject(depthValue) { }
 	virtual ~Planet(void) = 0;
 
 	// Planet can:

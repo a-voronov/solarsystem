@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "SolarSystemController.h"
+#include "glut.h"
 #include <GL/gl.h>
 
 const int windowWidth = 900;
@@ -31,7 +32,7 @@ int main(int argc, char **argv)
 
 	glutReshapeFunc(reshape);
 	glutDisplayFunc(display);
-	glutTimerFunc(10, timer, 0);
+	glutTimerFunc(20, timer, 0);
 	glutMainLoop();
 
 	delete solarSystem;
@@ -65,5 +66,5 @@ void timer(int)
 {   
 	solarSystem->timerObjectsMovement();
 	glutPostRedisplay();
-	glutTimerFunc(10, timer, 0);
+	glutTimerFunc(20, timer, 0);
 }

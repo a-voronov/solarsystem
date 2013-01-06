@@ -92,20 +92,34 @@
     <ClInclude Include="coords.h" />
     <ClInclude Include="Earth.h" />
     <ClInclude Include="glut.h" />
+    <ClInclude Include="Jupiter.h" />
+    <ClInclude Include="Mars.h" />
+    <ClInclude Include="Mercury.h" />
+    <ClInclude Include="Neptune.h" />
+    <ClInclude Include="Pluto.h" />
     <ClInclude Include="Satellite.h" />
     <ClInclude Include="Planet.h" />
+    <ClInclude Include="Saturn.h" />
     <ClInclude Include="SolarSystemController.h" />
     <ClInclude Include="SphereSpaceObject.h" />
     <ClInclude Include="Star.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Sun.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Uranus.h" />
+    <ClInclude Include="Venus.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Earth.cpp" />
+    <ClCompile Include="Jupiter.cpp" />
     <ClCompile Include="Lab4.cpp" />
+    <ClCompile Include="Mars.cpp" />
+    <ClCompile Include="Mercury.cpp" />
+    <ClCompile Include="Neptune.cpp" />
+    <ClCompile Include="Pluto.cpp" />
     <ClCompile Include="Satellite.cpp" />
     <ClCompile Include="Planet.cpp" />
+    <ClCompile Include="Saturn.cpp" />
     <ClCompile Include="SolarSystemController.cpp" />
     <ClCompile Include="SphereSpaceObject.cpp" />
     <ClCompile Include="Star.cpp" />
@@ -114,6 +128,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Sun.cpp" />
+    <ClCompile Include="Uranus.cpp" />
+    <ClCompile Include="Venus.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -6,15 +6,17 @@ class Sun : public Star
 {
 protected:
 	LPCWSTR			getImageName();
-	double			getRadius();
-	double			getSpinPeriod();
-	double			getOrbitPeriod();
 	rotationCoord	getSpinRotationCoord();
-	coord			getDistanceToOrbitCenter();
+	coord			getPathToOrbitCenter();
 	rotationCoord	getOrbitRotationCoord();
 
 public:
 	Sun(void);
+	Sun(double depthValue);
 	~Sun(void);
+
+	double getRadius();
+	double getSpinPeriod();
+	double getOrbitPeriod();
 };
 

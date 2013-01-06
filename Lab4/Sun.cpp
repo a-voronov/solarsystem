@@ -2,18 +2,11 @@
 #include "Sun.h"
 
 
-Sun::Sun(void) 
-{ 
-	this->setOrbitRotationAngle(0.0);
-	this->setSpinRotationAngle(0.0);
-}
+Sun::Sun(void) : Star() { }
 
-Sun::~Sun(void) { /* destructor body */ }
+Sun::Sun(double depthValue) : Star(depthValue) { }
 
-LPCWSTR	Sun::getImageName()
-{
-	return TEXT("Bitmaps/sunmap.bmp");
-}
+Sun::~Sun(void) { }
 
 double Sun::getRadius() 
 {
@@ -30,7 +23,12 @@ double Sun::getOrbitPeriod()
 	return 0.0;
 }
 
-coord Sun::getDistanceToOrbitCenter() 
+LPCWSTR	Sun::getImageName()
+{
+	return TEXT("Bitmaps/sunmap.bmp");
+}
+
+coord Sun::getPathToOrbitCenter() 
 {
 	return coord(0.0, 0.0, 0.0);
 }

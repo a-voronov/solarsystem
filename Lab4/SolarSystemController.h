@@ -29,14 +29,18 @@ Singleton* Singleton::getInstance()
 
 #pragma once
 
-#include <vector>
-#include "glut.h"
-#include <GL/gl.h>
-
 #include "SphereSpaceObject.h"
+#include <vector>
+
 
 class SolarSystemController
 {
+protected:
+	double currentEarthRotation;
+	double earthDaysTranspired;
+	double earthDayIncrement;
+	double earthDaysTranspirationLimit;
+
 public:
 	SolarSystemController(void);
 	~SolarSystemController(void);
@@ -47,6 +51,5 @@ public:
 
 protected:
 	std::vector<SphereSpaceObject*> spaceObjects;
-	GLUquadricObj *quadObj;
 };
 

@@ -1,7 +1,19 @@
 #include "StdAfx.h"
 #include "SphereSpaceObject.h"
+#include "glut.h"
 
 const double SphereSpaceObject::sphereDrawnAngle = -90.0;
+
+SphereSpaceObject::SphereSpaceObject(void) 
+{
+	this->setOrbitRotationAngle(0.0);
+	this->setSpinRotationAngle(0.0);
+}
+
+SphereSpaceObject::SphereSpaceObject(double depthValue)
+{
+	this->setDepthValue(depthValue);
+}
 
 //==================================================================================
 // Getters & Setters initialization
@@ -48,28 +60,33 @@ void SphereSpaceObject::initTextures(void)
 	glGenTextures(1, &imgTexture);
 }
 
-void SphereSpaceObject::draw(GLUquadricObj *quadObj)
+void SphereSpaceObject::draw(void)
 {
-	// glMatrixMode (GL_MODELVIEW);
+	GLUquadricObj* quadro = gluNewQuadric();							
+	gluQuadricNormals(quadro, GLU_SMOOTH);
+	gluQuadricDrawStyle(quadro, GLU_FILL);
+	gluQuadricTexture(quadro, GL_TRUE);
 
 	glPushMatrix();
 	{
-		glBindTexture(GL_TEXTURE_2D, this->texture);
+		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexImage2D(
 			GL_TEXTURE_2D, 0, 3, 
 			this->image.getWidth(), this->image.getHeight(), 0, 
 			GL_BGR_EXT, GL_UNSIGNED_BYTE, this->image.getBits()
 		);
-
+		
 		this->orbitalRotation();
 		this->spinRotation();
 		this->initialRotation();
 		
 		glDepthFunc(this->getDepthValue());
-		gluSphere(quadObj, this->getRadius(), this->getSphereSlices(), this->getSphereStacks());
+		glBindTexture(GL_TEXTURE_2D, this->texture);
+		gluSphere(quadro, this->getRadius(), this->getSphereSlices(), this->getSphereStacks());
 	}
 	glPopMatrix();
+	gluDeleteQuadric(quadro);
 }
 
 void SphereSpaceObject::orbitalRotation(void)
@@ -77,7 +94,7 @@ void SphereSpaceObject::orbitalRotation(void)
 	if (this->getOrbitPeriod() != 0.0) 
 	{
 		rotationCoord orbit = this->getOrbitRotationCoord();
-		coord distance = this->getDistanceToOrbitCenter();
+		coord distance = this->getPathToOrbitCenter();
 
 		glRotated(orbit.angle, orbit.x, orbit.y, orbit.z);
 		glTranslated(distance.x, distance.y, distance.z);
@@ -110,7 +127,12 @@ SphereSpaceObject::~SphereSpaceObject(void) { /* pure virtual destructor */ }
 
 rotationCoord SphereSpaceObject::getInitRotationCoord()
 {
-	return rotationCoord(0.0 + this->sphereDrawnAngle, 1.0, 0.0, 0.0);
+	return rotationCoord(this->sphereDrawnAngle, 1.0, 0.0, 0.0);
+}
+
+double SphereSpaceObject::getAxialTiltAngle(void)
+{
+	return 0.0;
 }
 
 double SphereSpaceObject::getSphereSlices(void)
