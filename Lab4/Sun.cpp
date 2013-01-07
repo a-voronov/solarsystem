@@ -42,3 +42,9 @@ rotationCoord Sun::getOrbitRotationCoord()
 {
 	return rotationCoord(0.0, 0.0, 0.0, 0.0);
 }
+
+double Sun::getInitialInclination()
+{
+	return 0.0;
+}
+

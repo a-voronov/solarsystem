@@ -43,6 +43,11 @@ rotationCoord Jupiter::getOrbitRotationCoord()
 	return rotationCoord(this->getOrbitRotationAngle(), 0.0, 1.0, 0.0);
 }
 
+double Jupiter::getInitialInclination()
+{
+	return 1.0;
+}
+
 double Jupiter::getAxialTiltAngle()
 {
 	return 3.13;

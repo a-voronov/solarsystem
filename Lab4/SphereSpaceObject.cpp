@@ -19,6 +19,11 @@ SphereSpaceObject::SphereSpaceObject(double depthValue)
 // Getters & Setters initialization
 //==================================================================================
 
+GLuint SphereSpaceObject::getTexture(void)
+{
+	return this->texture;
+}
+
 double SphereSpaceObject::getDepthValue(void)
 {
 	return this->depthValue;
@@ -56,7 +61,7 @@ void SphereSpaceObject::setOrbitRotationAngle(double angle)
 void SphereSpaceObject::initTextures(void)
 {
 	this->image.load(this->getImageName());
-	GLuint imgTexture = this->texture;
+	GLuint imgTexture = this->getTexture();//this->texture;
 	glGenTextures(1, &imgTexture);
 }
 
@@ -67,25 +72,33 @@ void SphereSpaceObject::draw(void)
 	gluQuadricDrawStyle(quadro, GLU_FILL);
 	gluQuadricTexture(quadro, GL_TRUE);
 
+	glEnable(GL_TEXTURE_2D);
 	glPushMatrix();
 	{
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexImage2D(
-			GL_TEXTURE_2D, 0, 3, 
-			this->image.getWidth(), this->image.getHeight(), 0, 
-			GL_BGR_EXT, GL_UNSIGNED_BYTE, this->image.getBits()
-		);
+		glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+		glPushMatrix();
+		{
+			glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+			glTexImage2D(
+				GL_TEXTURE_2D, 0, 3, 
+				this->image.getWidth(), this->image.getHeight(), 0, 
+				GL_BGR_EXT, GL_UNSIGNED_BYTE, this->image.getBits()
+			);
 		
-		this->orbitalRotation();
-		this->spinRotation();
-		this->initialRotation();
+			this->orbitalRotation();
+			this->spinRotation();
+			this->initialRotation();
 		
-		glDepthFunc(this->getDepthValue());
-		glBindTexture(GL_TEXTURE_2D, this->texture);
-		gluSphere(quadro, this->getRadius(), this->getSphereSlices(), this->getSphereStacks());
+			glDepthFunc(this->getDepthValue());
+			glBindTexture(GL_TEXTURE_2D, this->getTexture());
+			gluSphere(quadro, this->getRadius(), this->getSphereSlices(), this->getSphereStacks());
+		}
+		glPopMatrix();
 	}
 	glPopMatrix();
+
+	glDisable(GL_TEXTURE_2D);
 	gluDeleteQuadric(quadro);
 }
 
@@ -96,6 +109,7 @@ void SphereSpaceObject::orbitalRotation(void)
 		rotationCoord orbit = this->getOrbitRotationCoord();
 		coord distance = this->getPathToOrbitCenter();
 
+		glRotated(this->getInitialInclination(), 0.0, 0.0, 1.0);
 		glRotated(orbit.angle, orbit.x, orbit.y, orbit.z);
 		glTranslated(distance.x, distance.y, distance.z);
 	}

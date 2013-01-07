@@ -25,6 +25,7 @@ protected:
 	virtual coord			getPathToOrbitCenter()	= 0;
 	virtual rotationCoord	getSpinRotationCoord()	= 0;
 	virtual rotationCoord	getOrbitRotationCoord()	= 0;
+	virtual double			getInitialInclination() = 0;
 	virtual double			getAxialTiltAngle();
 	virtual rotationCoord	getInitRotationCoord();
 	virtual double			getSphereSlices();
@@ -39,6 +40,8 @@ public:
 	virtual double getSpinPeriod()	= 0; // Earth days
 	virtual double getOrbitPeriod()	= 0; // Earth days
 
+	GLuint getTexture(void);
+
 	double getDepthValue(void);
 	void setDepthValue(double depth);
 
@@ -48,8 +51,8 @@ public:
 	double getOrbitRotationAngle(void);
 	void setOrbitRotationAngle(double angle);
 
-	void initTextures(void);
-	void draw(void);
+	virtual void initTextures(void);
+	virtual void draw(void);
 
 	// SphereSpaceObject can have:
 	// - surface reflection material

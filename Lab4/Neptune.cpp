@@ -43,6 +43,11 @@ rotationCoord Neptune::getOrbitRotationCoord()
 	return rotationCoord(this->getOrbitRotationAngle(), 0.0, 1.0, 0.0);
 }
 
+double Neptune::getInitialInclination()
+{
+	return 2.0;
+}
+
 double Neptune::getAxialTiltAngle()
 {
 	return 28.32;

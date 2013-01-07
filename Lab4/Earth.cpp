@@ -43,6 +43,11 @@ rotationCoord Earth::getOrbitRotationCoord()
 	return rotationCoord(this->getOrbitRotationAngle(), 0.0, 1.0, 0.0);
 }
 
+double Earth::getInitialInclination()
+{
+	return 7.0;
+}
+
 double Earth::getAxialTiltAngle()
 {
 	return 23.0;

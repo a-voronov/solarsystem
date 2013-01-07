@@ -43,6 +43,11 @@ rotationCoord Venus::getOrbitRotationCoord()
 	return rotationCoord(this->getOrbitRotationAngle(), 0.0, 1.0, 0.0);
 }
 
+double Venus::getInitialInclination()
+{
+	return 3.0;
+}
+
 double Venus::getAxialTiltAngle()
 {
 	return 177.3;

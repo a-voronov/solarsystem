@@ -9,6 +9,7 @@ protected:
 	coord			getPathToOrbitCenter();
 	rotationCoord	getSpinRotationCoord();
 	rotationCoord	getOrbitRotationCoord();
+	double			getInitialInclination();
 	double			getAxialTiltAngle();
 
 public:

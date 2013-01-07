@@ -43,6 +43,11 @@ rotationCoord Pluto::getOrbitRotationCoord()
 	return rotationCoord(this->getOrbitRotationAngle(), 0.0, 1.0, 0.0);
 }
 
+double Pluto::getInitialInclination()
+{
+	return 1.0;
+}
+
 double Pluto::getAxialTiltAngle()
 {
 	return 119.591;

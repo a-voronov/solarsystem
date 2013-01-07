@@ -43,6 +43,11 @@ rotationCoord Uranus::getOrbitRotationCoord()
 	return rotationCoord(this->getOrbitRotationAngle(), 0.0, 1.0, 0.0);
 }
 
+double Uranus::getInitialInclination()
+{
+	return 1.0;
+}
+
 double Uranus::getAxialTiltAngle()
 {
 	return 97.77;

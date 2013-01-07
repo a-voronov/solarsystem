@@ -43,6 +43,11 @@ rotationCoord Mars::getOrbitRotationCoord()
 	return rotationCoord(this->getOrbitRotationAngle(), 0.0, 1.0, 0.0);
 }
 
+double Mars::getInitialInclination()
+{
+	return 2.0;
+}
+
 double Mars::getAxialTiltAngle()
 {
 	return 25.19;

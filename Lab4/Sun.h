@@ -9,6 +9,7 @@ protected:
 	rotationCoord	getSpinRotationCoord();
 	coord			getPathToOrbitCenter();
 	rotationCoord	getOrbitRotationCoord();
+	double			getInitialInclination();
 
 public:
 	Sun(void);

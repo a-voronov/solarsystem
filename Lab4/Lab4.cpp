@@ -4,6 +4,9 @@
 #include <GL/gl.h>
 #include "camera.h"
 
+// Rotation periods: http://en.wikipedia.org/wiki/Rotation_period
+// Orbiting periods: http://en.wikipedia.org/wiki/Orbit_period 
+
 const float movementSpeed = 0.005f;
 const float acceleration = 10.0;
 const int timerFrequency = 10;
