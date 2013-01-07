@@ -16,7 +16,7 @@ double Saturn::getRadius()
 
 coord Saturn::getPathToOrbitCenter()
 {
-	return coord(7.2, 0.0, 0.0);
+	return coord(7.8, 0.0, 0.0);
 }
 
 double Saturn::getOrbitPeriod()

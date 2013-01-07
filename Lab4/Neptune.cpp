@@ -15,7 +15,7 @@ double Neptune::getRadius()
 
 coord Neptune::getPathToOrbitCenter()
 {
-	return coord(10.3, 0.0, 0.0);
+	return coord(11.2, 0.0, 0.0);
 }
 
 double Neptune::getOrbitPeriod()

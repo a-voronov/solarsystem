@@ -22,10 +22,6 @@ protected:
 	static const double sphereDrawnAngle;
 
 	virtual LPCWSTR			getImageName()			= 0;
-	virtual coord			getPathToOrbitCenter()	= 0;
-	virtual rotationCoord	getSpinRotationCoord()	= 0;
-	virtual rotationCoord	getOrbitRotationCoord()	= 0;
-	virtual double			getInitialInclination() = 0;
 	virtual double			getAxialTiltAngle();
 	virtual rotationCoord	getInitRotationCoord();
 	virtual double			getSphereSlices();
@@ -36,9 +32,13 @@ public:
 	SphereSpaceObject(double depthValue);
 	virtual ~SphereSpaceObject(void) = 0;
 
-	virtual double getRadius()		= 0;
-	virtual double getSpinPeriod()	= 0; // Earth days
-	virtual double getOrbitPeriod()	= 0; // Earth days
+	virtual double getInitialInclination()			= 0;
+	virtual coord  getPathToOrbitCenter()			= 0;
+	virtual double getRadius()						= 0;
+	virtual double getSpinPeriod()					= 0; // Earth days
+	virtual double getOrbitPeriod()					= 0; // Earth days
+	virtual rotationCoord getSpinRotationCoord()	= 0;
+	virtual rotationCoord getOrbitRotationCoord()	= 0;
 
 	GLuint getTexture(void);
 

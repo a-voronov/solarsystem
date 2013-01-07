@@ -6,6 +6,7 @@
 #include "Mercury.h"
 #include "Venus.h"
 #include "Earth.h"
+#include "Moon.h"
 #include "Mars.h"
 #include "Jupiter.h"
 #include "Saturn.h"
@@ -28,6 +29,7 @@ SolarSystemController::SolarSystemController(void)
 	this->spaceObjects.push_back(new Mercury(99999));
 	this->spaceObjects.push_back(new Venus(99899));
 	this->spaceObjects.push_back(earth);
+	this->spaceObjects.push_back(new Moon(99789, (Planet*)earth));
 	this->spaceObjects.push_back(new Mars(99699));
 	this->spaceObjects.push_back(new Jupiter(99599));
 	this->spaceObjects.push_back(new Saturn(99499));

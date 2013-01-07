@@ -8,6 +8,7 @@ SphereSpaceObject::SphereSpaceObject(void)
 {
 	this->setOrbitRotationAngle(0.0);
 	this->setSpinRotationAngle(0.0);
+	this->setDepthValue(0.0);
 }
 
 SphereSpaceObject::SphereSpaceObject(double depthValue)
