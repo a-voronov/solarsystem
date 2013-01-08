@@ -2,10 +2,13 @@
 #include "SolarSystemController.h"
 #include "glut.h"
 #include <GL/gl.h>
+#include <GL/GLU.h>
 #include "camera.h"
 
+// Table of periods: http://www.solarviews.com/eng/data1.htm#orb
 // Rotation periods: http://en.wikipedia.org/wiki/Rotation_period
 // Orbiting periods: http://en.wikipedia.org/wiki/Orbit_period 
+// Bitmaps  sources: http://planetpixelemporium.com/saturn.html
 
 const float movementSpeed = 0.005f;
 const float acceleration = 10.0;

@@ -48,3 +48,14 @@ double Sun::getInitialInclination()
 	return 0.0;
 }
 
+void Sun::draw()
+{
+	GLfloat specular[] = {1.0, 1.0, 1.0, 1.0};
+	GLfloat emission[] = {1.0, 1.0, 0.0, 1.0};
+
+	glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
+	glMateriali(GL_FRONT, GL_SHININESS, 128.0);
+	glMaterialfv(GL_FRONT, GL_EMISSION, emission);
+
+	Star::draw();
+}

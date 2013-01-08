@@ -79,7 +79,7 @@ void Saturn::drawRing()
 	
 	glPushMatrix();
 	{
-		glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+		glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 		glPushMatrix();
 		{
 			glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -98,8 +98,9 @@ void Saturn::drawRing()
 			rotationCoord spin = this->getSpinRotationCoord();
 			glRotated(spin.angle, spin.x, spin.y, spin.z);
 
-			glRotated(this->sphereDrawnAngle, 1.0, 0.0, 0.0 );
-			glScaled(1.0, 1.0, 0.0000000001);
+			glRotated(this->sphereDrawnAngle, 1.0, 0.0, 0.0);
+			//glScaled(1.0, 1.0, 0.0000000001);
+			glScaled(1.0, 1.0, 0.001);
 			
 			glBindTexture(GL_TEXTURE_2D, this->getTexture());
 
@@ -109,7 +110,9 @@ void Saturn::drawRing()
 			glEnable(GL_TEXTURE_GEN_S);
 			glEnable(GL_TEXTURE_GEN_T);
 
-			glutSolidTorus(this->getRadius() * 0.5, this->getRadius() * 2, 4, 400);
+			glutSolidTorus(this->getRadius() * 0.7, this->getRadius() * 2, 3, 100);
+			// gluDisk(quadro, this->getRadius() * 1.3, this->getRadius() * 2, 100, 1);
+			// gluSphere(quadro, this->getRadius() * 2, 48, 48);
 
 			glDisable(GL_TEXTURE_GEN_S);
 			glDisable(GL_TEXTURE_GEN_T);

@@ -32,17 +32,21 @@ Singleton* Singleton::getInstance()
 #include "SphereSpaceObject.h"
 #include <vector>
 #include "camera.h"
-
+#include "Sun.h"
 
 class SolarSystemController
 {
-protected:
+private:
+	Star *m_sun;
 
+protected:
 	double currentEarthRotation;
 	double earthDaysTranspired;
 	double earthDayIncrement;
 	double earthDaysTranspirationLimit;
 	std::vector<SphereSpaceObject*> spaceObjects;
+
+	void updateLights(void);
 
 public:
 	SolarSystemController(void);

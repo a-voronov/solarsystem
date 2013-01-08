@@ -14,8 +14,6 @@
 #include "Neptune.h"
 #include "Pluto.h"
 
-//const float scale = 10.0;
-
 SolarSystemController::SolarSystemController(void) 
 {
 	this->currentEarthRotation = 0.0;
@@ -24,8 +22,10 @@ SolarSystemController::SolarSystemController(void)
 
 	SphereSpaceObject *earth = new Earth(99799);
 	this->earthDaysTranspirationLimit = earth->getOrbitPeriod();
+	SphereSpaceObject *sun = new Sun(100000);
+	this->m_sun = (Star*)sun;
 
-	this->spaceObjects.push_back(new Sun(100000));
+	this->spaceObjects.push_back(sun);
 	this->spaceObjects.push_back(new Mercury(99999));
 	this->spaceObjects.push_back(new Venus(99899));
 	this->spaceObjects.push_back(earth);
@@ -46,6 +46,42 @@ SolarSystemController::~SolarSystemController(void)
 	}
 }
 
+void SolarSystemController::updateLights(void)
+{
+	/*
+	// From RedBook
+	GLfloat mat_specular[] = {1.0, 1.0, 1.0, 1.0};
+	GLfloat mat_shininess[] = {128.0};
+	GLfloat light_position[] = {1.0, 1.0, 1.0, 0.0};
+	GLfloat white_light[] = {1.0, 1.0, 1.0, 1.0};
+	glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, mat_specular);
+	glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
+	glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, white_light);
+	glLightfv(GL_LIGHT0, GL_SPECULAR, white_light);
+
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
+	*/
+	
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
+	
+	float posLight0[4] = {0.0, 0.0, 0.0, 1.0};
+	float ambLight0[4] = {0.2, 0.2, 0.2, 1.0};
+
+	glLightfv(GL_LIGHT0, GL_POSITION, posLight0);
+	glLightfv(GL_LIGHT0, GL_AMBIENT, ambLight0);
+
+	GLfloat specular[] = {0.05, 0.05, 0.0, 1.0};
+	GLfloat emission[] = {0.0, 0.0, 0.0, 1.0};
+
+	glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
+	glMateriali(GL_FRONT, GL_SHININESS, 0.0);
+	glMaterialfv(GL_FRONT, GL_EMISSION, emission);
+
+}
+
 void SolarSystemController::initObjectsTextures(void)
 {
 	for (unsigned int index = 0; index < this->spaceObjects.size(); index++)
@@ -55,15 +91,14 @@ void SolarSystemController::initObjectsTextures(void)
 }
 
 void SolarSystemController::display(Camera *camera)
-{
-	glShadeModel(GL_SMOOTH);
-
-	glClearColor(0, 0, 0, 0);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glColor3d(1, 1, 1);
-	
+{	
 	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_TEXTURE_2D);	
+	glEnable(GL_TEXTURE_2D);
+
+	glShadeModel(GL_SMOOTH);
+	glClearColor(0, 0, 0, 0);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+	glColor3d(1, 1, 1);
 
 	glLoadIdentity();
 	gluLookAt(
@@ -71,15 +106,12 @@ void SolarSystemController::display(Camera *camera)
 		camera->m_vView.x,		camera->m_vView.y,		camera->m_vView.z, 
 		camera->m_vUpVector.x,	camera->m_vUpVector.y,	camera->m_vUpVector.z
 	);
-	
+
 	for (unsigned int index = 0; index < this->spaceObjects.size(); index++)
 	{
+		this->updateLights();
 		this->spaceObjects[index]->draw();
 	}
-
-	//glEnable(GL_BLEND);
-	//glDepthMask(GL_TRUE);
-	//glBlendFunc(GL_SRC_COLOR, GL_ONE);
 
 	glutSwapBuffers();
 	glFlush();

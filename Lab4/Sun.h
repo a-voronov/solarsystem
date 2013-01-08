@@ -19,5 +19,6 @@ public:
 	double getRadius();
 	double getSpinPeriod();
 	double getOrbitPeriod();
+	void   draw(void);
 };
 

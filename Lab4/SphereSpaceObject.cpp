@@ -76,11 +76,12 @@ void SphereSpaceObject::draw(void)
 	glEnable(GL_TEXTURE_2D);
 	glPushMatrix();
 	{
-		glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+		glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 		glPushMatrix();
 		{
 			glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
 			glTexImage2D(
 				GL_TEXTURE_2D, 0, 3, 
 				this->image.getWidth(), this->image.getHeight(), 0, 
