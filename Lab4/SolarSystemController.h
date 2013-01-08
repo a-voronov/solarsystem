@@ -29,15 +29,20 @@ Singleton* Singleton::getInstance()
 
 #pragma once
 
-#include "SphereSpaceObject.h"
 #include <vector>
+#include "ParticleSystem.h"
+#include "SphereSpaceObject.h"
 #include "camera.h"
 #include "Sun.h"
+
 
 class SolarSystemController
 {
 private:
 	Star *m_sun;
+	ParticleSystem particles;
+	GLuint texture;
+	BitmapBits image;
 
 protected:
 	double currentEarthRotation;
@@ -47,6 +52,8 @@ protected:
 	std::vector<SphereSpaceObject*> spaceObjects;
 
 	void updateLights(void);
+	void drawAllParticles(void);
+	void drawParticle(Particle currParticle);
 
 public:
 	SolarSystemController(void);

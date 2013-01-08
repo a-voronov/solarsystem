@@ -21,7 +21,7 @@ private:
 protected:
 	static const double sphereDrawnAngle;
 
-	virtual LPCWSTR			getImageName()			= 0;
+	virtual LPCWSTR			getImageName() = 0;
 	virtual double			getAxialTiltAngle();
 	virtual rotationCoord	getInitRotationCoord();
 	virtual double			getSphereSlices();

@@ -14,6 +14,7 @@
 #include "Neptune.h"
 #include "Pluto.h"
 
+
 SolarSystemController::SolarSystemController(void) 
 {
 	this->currentEarthRotation = 0.0;
@@ -48,26 +49,12 @@ SolarSystemController::~SolarSystemController(void)
 
 void SolarSystemController::updateLights(void)
 {
-	/*
-	// From RedBook
-	GLfloat mat_specular[] = {1.0, 1.0, 1.0, 1.0};
-	GLfloat mat_shininess[] = {128.0};
-	GLfloat light_position[] = {1.0, 1.0, 1.0, 0.0};
-	GLfloat white_light[] = {1.0, 1.0, 1.0, 1.0};
-	glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, mat_specular);
-	glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
-	glLightfv(GL_LIGHT0, GL_POSITION, light_position);
-	glLightfv(GL_LIGHT0, GL_DIFFUSE, white_light);
-	glLightfv(GL_LIGHT0, GL_SPECULAR, white_light);
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
+	
+	coord center = this->m_sun->getPathToOrbitCenter();
 
-	glEnable(GL_LIGHTING);
-	glEnable(GL_LIGHT0);
-	*/
-	
-	glEnable(GL_LIGHTING);
-	glEnable(GL_LIGHT0);
-	
-	float posLight0[4] = {0.0, 0.0, 0.0, 1.0};
+	float posLight0[4] = {center.x, center.y, center.z, 1.0};
 	float ambLight0[4] = {0.2, 0.2, 0.2, 1.0};
 
 	glLightfv(GL_LIGHT0, GL_POSITION, posLight0);
@@ -88,12 +75,17 @@ void SolarSystemController::initObjectsTextures(void)
 	{
 		this->spaceObjects[index]->initTextures();
 	}
+
+	image.load(TEXT("Bitmaps/particle.bmp"));
+	GLuint imgTexture = texture;
+	glGenTextures(1, &imgTexture);
 }
 
 void SolarSystemController::display(Camera *camera)
 {	
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_TEXTURE_2D);
+	// glEnable(GL_NORMALIZE);
 
 	glShadeModel(GL_SMOOTH);
 	glClearColor(0, 0, 0, 0);
@@ -113,8 +105,20 @@ void SolarSystemController::display(Camera *camera)
 		this->spaceObjects[index]->draw();
 	}
 
+	glEnable(GL_BLEND);
+	{
+		glDepthMask(GL_FALSE);
+		glBlendFunc(GL_SRC_COLOR,GL_ONE);
+
+		drawAllParticles();
+
+		glDepthMask(GL_TRUE);
+	}
+	glDisable(GL_BLEND);
+
 	glutSwapBuffers();
 	glFlush();
+	glDisable(GL_TEXTURE_2D);
 }
 
 void SolarSystemController::timerObjectsMovement(void)
@@ -150,4 +154,99 @@ void SolarSystemController::setRotationSpeed(double speed)
 		return;
 	}
 	this->earthDayIncrement = speed;
+}
+
+void SolarSystemController::drawAllParticles()
+{
+	glEnable(GL_TEXTURE_2D);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexImage2D(
+		GL_TEXTURE_2D, 0, 3, 
+		image.getWidth(), image.getHeight(), 0, 
+		GL_BGR_EXT, GL_UNSIGNED_BYTE, image.getBits()
+	);
+	glBindTexture(GL_TEXTURE_2D, texture);
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+
+	particles.updateAll();
+	for(int i = 0; i < particles.getNumberOfParticles(); i++)
+	{
+		drawParticle(particles.getNextParticle());
+	}
+}
+
+void SolarSystemController::drawParticle(Particle currParticle)
+{
+	glPushMatrix();
+	{
+		glRotatef(currParticle.azimuthRoation, 0, 1, 0);
+		glRotatef(currParticle.zenithRotation, 0, 0, 1);
+
+		glPushMatrix();
+		{	
+			glTranslatef(1.2 + currParticle.surfaceTranslationFactor, 0, 0);
+			glScalef(0.5, 0.5, 1.0);
+
+			glBegin(GL_TRIANGLE_STRIP);
+			{
+				glTexCoord2d(1,1); 
+					glVertex3f(0.5f, 0.5f, 0.0f); // Top Right
+				glTexCoord2d(0,1);
+					glVertex3f(-0.5f, 0.5f, 0.0f); // Top Left
+				glTexCoord2d(1,0); 
+					glVertex3f(0.5f, -0.5f, 0.0f); // Bottom Right
+				glTexCoord2d(0,0); 
+					glVertex3f(-0.5f, -0.5f, 0.0f); // Bottom Left
+			}
+			glEnd();
+
+			glBegin(GL_TRIANGLE_STRIP);
+			{
+				glTexCoord2d(1,1); 
+					glVertex3f(-0.5f, 0.5f, 0.0f); // Top Right
+				glTexCoord2d(0,1);
+					glVertex3f(0.5f, 0.5f, 0.0f); // Top Left
+				glTexCoord2d(1,0); 
+					glVertex3f(-0.5f, -0.5f, 0.0f); // Bottom Right
+				glTexCoord2d(0,0); 
+					glVertex3f(0.5f, -0.5f, 0.0f); // Bottom Left
+			}
+			glEnd();
+		}
+		glPopMatrix();
+
+		glTranslatef(1.0 + currParticle.surfaceTranslationFactor, 0, 0);
+		glRotatef(90, 0, 1, 0);
+		glScalef(0.5, 0.5, 1.0);
+
+		// Logo Facing Earth
+		glBegin(GL_TRIANGLE_STRIP);
+		{
+			glTexCoord2d(1,1); 
+				glVertex3f(0.5f, 0.5f, 0.0f); // Top Right
+			glTexCoord2d(0,1);
+				glVertex3f(-0.5f, 0.5f, 0.0f); // Top Left
+			glTexCoord2d(1,0); 
+				glVertex3f(0.5f, -0.5f, 0.0f); // Bottom Right
+			glTexCoord2d(0,0); 
+				glVertex3f(-0.5f, -0.5f, 0.0f); // Bottom Left
+		}
+		glEnd();
+
+		// Logo Facing Away From Earth
+		glBegin(GL_TRIANGLE_STRIP);
+		{
+			glTexCoord2d(1,1); 
+				glVertex3f(-0.5f, 0.5f, 0.0f); // Top Right
+			glTexCoord2d(0,1);
+				glVertex3f(0.5f, 0.5f, 0.0f); // Top Left
+			glTexCoord2d(1,0); 
+				glVertex3f(-0.5f, -0.5f, 0.0f); // Bottom Right
+			glTexCoord2d(0,0); 
+				glVertex3f(0.5f, -0.5f, 0.0f); // Bottom Left
+		}
+		glEnd();
+	}
+	glPopMatrix();
 }

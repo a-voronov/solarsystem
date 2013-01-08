@@ -62,7 +62,7 @@ void SphereSpaceObject::setOrbitRotationAngle(double angle)
 void SphereSpaceObject::initTextures(void)
 {
 	this->image.load(this->getImageName());
-	GLuint imgTexture = this->getTexture();//this->texture;
+	GLuint imgTexture = this->getTexture();
 	glGenTextures(1, &imgTexture);
 }
 

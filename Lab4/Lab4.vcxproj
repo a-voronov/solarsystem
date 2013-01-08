@@ -98,6 +98,7 @@
     <ClInclude Include="Mercury.h" />
     <ClInclude Include="Moon.h" />
     <ClInclude Include="Neptune.h" />
+    <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="Pluto.h" />
     <ClInclude Include="Satellite.h" />
     <ClInclude Include="Planet.h" />
@@ -120,6 +121,7 @@
     <ClCompile Include="Mercury.cpp" />
     <ClCompile Include="Moon.cpp" />
     <ClCompile Include="Neptune.cpp" />
+    <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="Pluto.cpp" />
     <ClCompile Include="Satellite.cpp" />
     <ClCompile Include="Planet.cpp" />
