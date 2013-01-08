@@ -203,7 +203,7 @@
     <ClCompile Include="Moon.cpp">
       <Filter>Source Files\SolarSystem\SpaceSpheres</Filter>
     </ClCompile>
-    <ClCompile Include="SolarSystem.cpp">
+    <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

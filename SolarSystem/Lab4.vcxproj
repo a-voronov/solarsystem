@@ -117,7 +117,7 @@
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="Earth.cpp" />
     <ClCompile Include="Jupiter.cpp" />
-    <ClCompile Include="SolarSystem.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="Mars.cpp" />
     <ClCompile Include="Mercury.cpp" />
     <ClCompile Include="Moon.cpp" />
