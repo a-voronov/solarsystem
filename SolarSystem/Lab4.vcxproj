@@ -14,6 +14,7 @@
     <ProjectGuid>{56A988FF-1FF5-4735-BDCF-BF0C7404A3EF}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Lab4</RootNamespace>
+    <ProjectName>SolarSystem</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -116,7 +117,7 @@
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="Earth.cpp" />
     <ClCompile Include="Jupiter.cpp" />
-    <ClCompile Include="Lab4.cpp" />
+    <ClCompile Include="SolarSystem.cpp" />
     <ClCompile Include="Mars.cpp" />
     <ClCompile Include="Mercury.cpp" />
     <ClCompile Include="Moon.cpp" />

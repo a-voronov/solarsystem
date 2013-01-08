@@ -13,7 +13,7 @@
 
 
 
-const int NUMBER_OF_PARTICLES = 1000;
+const int NUMBER_OF_PARTICLES = 800;
 const float MAX_ROTATION = 360;
 const float MIN_ROTATION = 0;
 const float MIN_TRANS = .005;
