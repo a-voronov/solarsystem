@@ -1,14 +1,3 @@
-//Adam Coffman 
-//Particle System Class
-////////////////////////////////////////////////////////////////////////
-//This Class is used to represent the particle system. It contains 
-//an array of particle structs. Each with their own translation from the
-//origin, azimuth, and zenith, as well as velocities and lifetimes.
-//An array was a better choice than a linked list here as there are
-//always a constant number of particles (when one dies, it is immediately
-//replaced by another) and we do not need to perform sorted insertions
-//and deletions.
-/////////////////////////////////////////////////////////////////////////
 #pragma once
 
 
@@ -54,10 +43,8 @@ class ParticleSystem{
 		//Marker used by getNextParticle to keep track of position.
 		int currentParticle;
 
-		//Array of all particle structs
 		Particle particles[NUMBER_OF_PARTICLES];
 
-	  //This is your random number generator from the last program
 		float generateRandomNumber(float lower, float upper);
 		
 		//Get a new Particle struct with new randomized values.

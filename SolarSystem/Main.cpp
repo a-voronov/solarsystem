@@ -72,7 +72,7 @@ void initOnReshape(double width, double height)
 
 	double aspectRatio = width / height;
 
-	gluPerspective(60.0, aspectRatio, 0.2, 100.0);
+	gluPerspective(60.0, aspectRatio, 0.1, 200.0);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 }

@@ -40,9 +40,11 @@ class SolarSystemController
 {
 private:
 	Star *m_sun;
+	BitmapBits *particleImage;
+	BitmapBits skyBoxImages[6];
+	GLuint skyboxTextures[6];
 	ParticleSystem particles;
 	GLuint texture;
-	BitmapBits image;
 
 protected:
 	double currentEarthRotation;
@@ -52,6 +54,8 @@ protected:
 	std::vector<SphereSpaceObject*> spaceObjects;
 
 	void updateLights(void);
+	void initSkyBoxTextures(void);
+	void drawSkybox(float x, float y, float z, float width, float height, float length);
 	void drawAllParticles(void);
 	void drawParticle(Particle currParticle);
 

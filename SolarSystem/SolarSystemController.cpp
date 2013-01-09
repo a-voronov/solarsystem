@@ -14,12 +14,19 @@
 #include "Neptune.h"
 #include "Pluto.h"
 
+#define SKYFRONT 0
+#define SKYBACK  1
+#define SKYLEFT  2
+#define SKYRIGHT 3
+#define SKYUP    4
+#define SKYDOWN  5
 
 SolarSystemController::SolarSystemController(void) 
 {
 	this->currentEarthRotation = 0.0;
 	this->earthDaysTranspired = 0.0;
 	this->earthDayIncrement = 0.8;
+	this->particleImage = new BitmapBits();
 
 	SphereSpaceObject *earth = new Earth(99799);
 	this->earthDaysTranspirationLimit = earth->getOrbitPeriod();
@@ -45,6 +52,7 @@ SolarSystemController::~SolarSystemController(void)
 	{
 		delete this->spaceObjects[index];
 	}
+	delete this->particleImage;
 }
 
 void SolarSystemController::updateLights(void)
@@ -66,19 +74,47 @@ void SolarSystemController::updateLights(void)
 	glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
 	glMateriali(GL_FRONT, GL_SHININESS, 0.0);
 	glMaterialfv(GL_FRONT, GL_EMISSION, emission);
-
 }
 
 void SolarSystemController::initObjectsTextures(void)
 {
+	this->initSkyBoxTextures();
+
 	for (unsigned int index = 0; index < this->spaceObjects.size(); index++)
 	{
 		this->spaceObjects[index]->initTextures();
 	}
 
-	image.load(TEXT("Bitmaps/particle.bmp"));
+	this->particleImage->load(TEXT("Bitmaps/particle.bmp"));
 	GLuint imgTexture = texture;
 	glGenTextures(1, &imgTexture);
+}
+
+void SolarSystemController::initSkyBoxTextures()
+{
+	this->skyBoxImages[SKYUP].load(TEXT("Bitmaps/Skybox/skybox_top.bmp"));
+	GLuint imgTexture1 = skyboxTextures[SKYUP];
+	glGenTextures(1, &imgTexture1);
+
+	this->skyBoxImages[SKYDOWN].load(TEXT("Bitmaps/Skybox/skybox_bottom.bmp"));
+	GLuint imgTexture2 = skyboxTextures[SKYDOWN];
+	glGenTextures(1, &imgTexture2);
+
+	this->skyBoxImages[SKYLEFT].load(TEXT("Bitmaps/Skybox/skybox_left.bmp"));
+	GLuint imgTexture3 = skyboxTextures[SKYLEFT];
+	glGenTextures(1, &imgTexture3);
+
+	this->skyBoxImages[SKYRIGHT].load(TEXT("Bitmaps/Skybox/skybox_right.bmp"));
+	GLuint imgTexture4 = skyboxTextures[SKYRIGHT];
+	glGenTextures(1, &imgTexture4);
+
+	this->skyBoxImages[SKYFRONT].load(TEXT("Bitmaps/Skybox/skybox_front.bmp"));
+	GLuint imgTexture5 = skyboxTextures[SKYFRONT];
+	glGenTextures(1, &imgTexture5);
+
+	this->skyBoxImages[SKYBACK].load(TEXT("Bitmaps/Skybox/skybox_back.bmp"));
+	GLuint imgTexture6 = skyboxTextures[SKYBACK];
+	glGenTextures(1, &imgTexture6);
 }
 
 void SolarSystemController::display(Camera *camera)
@@ -98,6 +134,8 @@ void SolarSystemController::display(Camera *camera)
 		camera->m_vView.x,		camera->m_vView.y,		camera->m_vView.z, 
 		camera->m_vUpVector.x,	camera->m_vUpVector.y,	camera->m_vUpVector.z
 	);
+
+	this->drawSkybox(0, 0, 0, 100, 100, 100);
 
 	for (unsigned int index = 0; index < this->spaceObjects.size(); index++)
 	{
@@ -156,6 +194,116 @@ void SolarSystemController::setRotationSpeed(double speed)
 	this->earthDayIncrement = speed;
 }
 
+void SolarSystemController::drawSkybox(float x, float y, float z, float width, float height, float length)
+{
+	glEnable(GL_TEXTURE_2D);
+
+	GLfloat specular[] = {0.4, 0.4, 0.4, 1.0};
+	GLfloat emission[] = {0.2, 0.2, 0.2, 1.0};
+
+	glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
+	glMateriali(GL_FRONT, GL_SHININESS, 1.0);
+	glMaterialfv(GL_FRONT, GL_EMISSION, emission);
+
+	// Center the Skybox around the given x,y,z position
+	x = x - width  / 2;
+	y = y - height / 2;
+	z = z - length / 2;
+
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexImage2D(
+		GL_TEXTURE_2D, 0, 3, 
+		this->skyBoxImages[SKYFRONT].getWidth(), this->skyBoxImages[SKYFRONT].getHeight(), 0, 
+		GL_BGR_EXT, GL_UNSIGNED_BYTE, this->skyBoxImages[SKYFRONT].getBits()
+	);
+
+	// Draw Front side
+	glBindTexture(GL_TEXTURE_2D, skyboxTextures[SKYFRONT]);
+	glBegin(GL_QUADS);	
+		glTexCoord2f(1.0f, 0.0f); glVertex3f(x,		  y,		z+length);
+		glTexCoord2f(1.0f, 1.0f); glVertex3f(x,		  y+height, z+length);
+		glTexCoord2f(0.0f, 1.0f); glVertex3f(x+width, y+height, z+length); 
+		glTexCoord2f(0.0f, 0.0f); glVertex3f(x+width, y,		z+length);
+	glEnd();
+
+	glTexImage2D(
+		GL_TEXTURE_2D, 0, 3, 
+		this->skyBoxImages[SKYBACK].getWidth(), this->skyBoxImages[SKYBACK].getHeight(), 0, 
+		GL_BGR_EXT, GL_UNSIGNED_BYTE, this->skyBoxImages[SKYBACK].getBits()
+	);
+
+	// Draw Back side
+	glBindTexture(GL_TEXTURE_2D, skyboxTextures[SKYBACK]);
+	glBegin(GL_QUADS);		
+		glTexCoord2f(1.0f, 0.0f); glVertex3f(x+width, y,		z);
+		glTexCoord2f(1.0f, 1.0f); glVertex3f(x+width, y+height, z); 
+		glTexCoord2f(0.0f, 1.0f); glVertex3f(x,		  y+height,	z);
+		glTexCoord2f(0.0f, 0.0f); glVertex3f(x,		  y,		z);
+	glEnd();
+
+	glTexImage2D(
+		GL_TEXTURE_2D, 0, 3, 
+		this->skyBoxImages[SKYLEFT].getWidth(), this->skyBoxImages[SKYLEFT].getHeight(), 0, 
+		GL_BGR_EXT, GL_UNSIGNED_BYTE, this->skyBoxImages[SKYLEFT].getBits()
+	);
+
+	// Draw Left side
+	glBindTexture(GL_TEXTURE_2D, skyboxTextures[SKYLEFT]);
+	glBegin(GL_QUADS);		
+		glTexCoord2f(1.0f, 1.0f); glVertex3f(x,		  y+height,	z);	
+		glTexCoord2f(0.0f, 1.0f); glVertex3f(x,		  y+height,	z+length); 
+		glTexCoord2f(0.0f, 0.0f); glVertex3f(x,		  y,		z+length);
+		glTexCoord2f(1.0f, 0.0f); glVertex3f(x,		  y,		z);		
+	glEnd();
+
+	glTexImage2D(
+		GL_TEXTURE_2D, 0, 3, 
+		this->skyBoxImages[SKYRIGHT].getWidth(), this->skyBoxImages[SKYRIGHT].getHeight(), 0, 
+		GL_BGR_EXT, GL_UNSIGNED_BYTE, this->skyBoxImages[SKYRIGHT].getBits()
+	);
+
+	// Draw Right side
+	glBindTexture(GL_TEXTURE_2D, skyboxTextures[SKYRIGHT]);
+	glBegin(GL_QUADS);		
+		glTexCoord2f(0.0f, 0.0f); glVertex3f(x+width, y,		z);
+		glTexCoord2f(1.0f, 0.0f); glVertex3f(x+width, y,		z+length);
+		glTexCoord2f(1.0f, 1.0f); glVertex3f(x+width, y+height,	z+length); 
+		glTexCoord2f(0.0f, 1.0f); glVertex3f(x+width, y+height,	z);
+	glEnd();
+
+	glTexImage2D(
+		GL_TEXTURE_2D, 0, 3, 
+		this->skyBoxImages[SKYUP].getWidth(), this->skyBoxImages[SKYUP].getHeight(), 0, 
+		GL_BGR_EXT, GL_UNSIGNED_BYTE, this->skyBoxImages[SKYUP].getBits()
+	);
+
+	// Draw Up side
+	glBindTexture(GL_TEXTURE_2D, skyboxTextures[SKYUP]);
+	glBegin(GL_QUADS);		
+		glTexCoord2f(0.0f, 0.0f); glVertex3f(x+width, y+height, z);
+		glTexCoord2f(1.0f, 0.0f); glVertex3f(x+width, y+height, z+length); 
+		glTexCoord2f(1.0f, 1.0f); glVertex3f(x,		  y+height,	z+length);
+		glTexCoord2f(0.0f, 1.0f); glVertex3f(x,		  y+height,	z);
+	glEnd();
+
+	glTexImage2D(
+		GL_TEXTURE_2D, 0, 3, 
+		this->skyBoxImages[SKYDOWN].getWidth(), this->skyBoxImages[SKYDOWN].getHeight(), 0, 
+		GL_BGR_EXT, GL_UNSIGNED_BYTE, this->skyBoxImages[SKYDOWN].getBits()
+	);
+
+	// Draw Down side
+	glBindTexture(GL_TEXTURE_2D, skyboxTextures[SKYDOWN]);
+	glBegin(GL_QUADS);		
+		glTexCoord2f(0.0f, 0.0f); glVertex3f(x,		  y,		z);
+		glTexCoord2f(1.0f, 0.0f); glVertex3f(x,		  y,		z+length);
+		glTexCoord2f(1.0f, 1.0f); glVertex3f(x+width, y,		z+length); 
+		glTexCoord2f(0.0f, 1.0f); glVertex3f(x+width, y,		z);
+	glEnd();
+}
+
 void SolarSystemController::drawAllParticles()
 {
 	glEnable(GL_TEXTURE_2D);
@@ -163,8 +311,8 @@ void SolarSystemController::drawAllParticles()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexImage2D(
 		GL_TEXTURE_2D, 0, 3, 
-		image.getWidth(), image.getHeight(), 0, 
-		GL_BGR_EXT, GL_UNSIGNED_BYTE, image.getBits()
+		this->particleImage->getWidth(), this->particleImage->getHeight(), 0, 
+		GL_BGR_EXT, GL_UNSIGNED_BYTE, this->particleImage->getBits()
 	);
 	glBindTexture(GL_TEXTURE_2D, texture);
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
@@ -220,21 +368,7 @@ void SolarSystemController::drawParticle(Particle currParticle)
 		glRotatef(90, 0, 1, 0);
 		glScalef(0.5, 0.5, 1.0);
 
-		// Logo Facing Earth
-		glBegin(GL_TRIANGLE_STRIP);
-		{
-			glTexCoord2d(1,1); 
-				glVertex3f(0.5f, 0.5f, 0.0f); // Top Right
-			glTexCoord2d(0,1);
-				glVertex3f(-0.5f, 0.5f, 0.0f); // Top Left
-			glTexCoord2d(1,0); 
-				glVertex3f(0.5f, -0.5f, 0.0f); // Bottom Right
-			glTexCoord2d(0,0); 
-				glVertex3f(-0.5f, -0.5f, 0.0f); // Bottom Left
-		}
-		glEnd();
-
-		// Logo Facing Away From Earth
+		// Logo Facing Away From Sun
 		glBegin(GL_TRIANGLE_STRIP);
 		{
 			glTexCoord2d(1,1); 

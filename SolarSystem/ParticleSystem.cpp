@@ -1,14 +1,3 @@
-//Adam Coffman 
-//Particle System Class
-////////////////////////////////////////////////////////////////////////
-//This Class is used to represent the particle system. It contains 
-//an array of particle structs. Each with their own translation from the
-//origin, azimuth, and zenith, as well as velocities and lifetimes.
-//An array was a better choice than a linked list here as there are
-//always a constant number of particles (when one dies, it is immediately
-//replaced by another) and we do not need to perform sorted insertions
-//and deletions.
-/////////////////////////////////////////////////////////////////////////
 #include "StdAfx.h"
 #include "ParticleSystem.h"
 #include <cmath>
